@@ -8,8 +8,9 @@
     <ImageView
         android:id="@+id/iv"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="2" />
+        android:layout_height="0dip"
+        android:layout_weight="2" 
+        />
 
     <EditText
         android:id="@+id/et_path"
