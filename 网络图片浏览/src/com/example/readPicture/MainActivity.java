@@ -76,6 +76,7 @@ public class MainActivity extends Activity {
 							Message msg = new Message();
 							msg.what = CHANGE_UI;
 							msg.obj = bitmap;
+
 							handler.sendMessage(msg);
 
 						} else {
