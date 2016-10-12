@@ -1,0 +1,51 @@
+
+apply plugin: 'com.android.application'
+
+def outputName = "videole2.apk"
+android {
+    signingConfigs {
+        SignConfig {
+            keyAlias 'iplay'
+            keyPassword 'passwd11'
+            storeFile file('release.keystore')
+            storePassword 'passwd11'
+        }
+    }
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
+    defaultConfig {
+        applicationId "com.frankpi.videole2"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-rules.pro'
+            signingConfig signingConfigs.SignConfig
+            proguardFile 'proguard-rules.pro'
+        }
+        debug{
+
+        }
+    }
+    applicationVariants.all{ variant->
+        variant.outputs.each { output->
+            def oldFile = output.outputFile
+            if(variant.buildType.name.equals('release')){
+                output.outputFile = new File(oldFile.parent, outputName)
+            }
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/okhttp-2.7.5.jar')
+    compile files('libs/okio-1.8.0.jar')
+    compile files('libs/fastjson-1.2.13.jar')
+    compile files('libs/activation.jar')
+    compile files('libs/mail.jar')
+    compile files('libs/additionnal.jar')
+}
